@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 public class Contacts {
+
 	// initialization
 	String firstName;
 	String lastName;
