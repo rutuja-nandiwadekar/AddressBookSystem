@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AddressBookMain {
 
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 	// creation of arraylist
 	ArrayList<Contacts> personDetails = new ArrayList<>();
 
@@ -32,7 +32,6 @@ public class AddressBookMain {
 
 		// Add the above list to personDetails array list
 		personDetails.add(add);
-
 		System.out.println(add);
 	}
 
@@ -40,8 +39,6 @@ public class AddressBookMain {
 	 * This is the method to edit existing contact person using their name
 	 */
 	public void editPerson() {
-		Scanner sc = new Scanner(System.in);
-
 		System.out.println("Enter name to Edit");
 		String name = sc.next();
 
@@ -90,23 +87,35 @@ public class AddressBookMain {
 				System.out.println(p);
 			}
 		}
-		sc.close();
+	}
+
+	/*
+	 * This is the method to delete existing contact person using their name
+	 */
+	public void deletePerson() {
+
+		System.out.println("Enter name to Delete");
+		String name = sc.next();
+
+		for (int i = 0; i < personDetails.size(); i++) {
+			Contacts p = (Contacts) personDetails.get(i);
+			if (name.equals(p.getFirstName())) {
+				System.out.println(p);
+				personDetails.remove(i);
+				System.out.println(personDetails.isEmpty());
+			}
+		}
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book Program ");
-		Scanner sc = new Scanner(System.in);
 
 		AddressBookMain addPerson = new AddressBookMain();
 		// to add a new Contact
-		System.out.println("Enter Number of persons you want to add : ");
-		int person_count = sc.nextInt();
-		for (int i = 0; i < person_count; i++) {
-			addPerson.newContact();
-		}
+		addPerson.newContact();
 		// to edit existing contact
 		addPerson.editPerson();
-
-		sc.close();
+		// to delete existing contact
+		addPerson.deletePerson();
 	}
 }
